@@ -22,7 +22,7 @@ class Cart(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.CASCADE, related_name="customer_carts"
     )
-    qty = models.PositiveIntegerField(default=1)
+    qty = models.PositiveIntegerField(default=0)
     final_price = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
     in_order = models.BooleanField(default=False)
 

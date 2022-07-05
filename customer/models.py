@@ -9,3 +9,6 @@ class Customer(models.Model):
     customer = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="user_customer"
     )
+
+    def __str__(self) -> str:
+        return f"Customer {self.id}. {self.customer.username}"

@@ -11,6 +11,11 @@ def home_view(request, *args, **kwargs):
     categories = Category.objects.all()
     products = Product.objects.all()
     context = {"products": products, "categories": categories}
+    carts = Cart.objects.filter(customer=request.user.user_customer, in_order=False)
+    if carts.exists():
+        context["cart"] = carts.first()
+    print(context)
+
     return render(request, "product/index.html", context)
 
 
@@ -23,6 +28,10 @@ def product_details_view(request, slug, *args, **kwargs):
 
     if product.exists():
         context = {"product": product.first()}
+
+    carts = Cart.objects.filter(customer=request.user.user_customer, in_order=False)
+    if carts.exists():
+        context["cart"] = carts.first()
 
     if request.GET.get("product"):
         product_for_cart = Product.objects.get(slug=request.GET.get("product"))
@@ -66,5 +75,5 @@ def product_details_view(request, slug, *args, **kwargs):
             cart_final_price += cart_product.total_price
         cart.final_price = Decimal(cart_final_price)
         cart.save()
-
+    print(context)
     return render(request, "product/product_details.html", context)

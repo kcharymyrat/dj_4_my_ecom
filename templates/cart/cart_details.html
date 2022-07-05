@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <h3>Cart products:</h3>
+    <table>
+        <thead>
+            <th>Product name</th>
+            <th>Qty</th>
+            <th>Price ($)</th>
+        </thead>
+        <tbody>
+            {% for p in cart.cart_cartproducts.all %}
+            <tr>
+                <td>{{p.product.name}}</td>
+                <td>{{p.qty}}</td>
+                <td>{{p.total_price}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td span="2"><strong>Total Cart Price</strong></td>
+                <td></td>
+                <td><strong>{{cart.final_price}}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="">
+        <button type="submit">Checkeout</button>
+    </form>
+    
+
+{% endblock content %}

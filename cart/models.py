@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from product.models import Product
 from customer.models import Customer
@@ -28,3 +29,6 @@ class Cart(models.Model):
 
     def __str__(self) -> str:
         return f"{self.customer.id}'s cart final_price = ${self.final_price}"
+
+    def get_absolute_url(self):
+        return reverse("cart:cart_details", kwargs={"pk": self.pk})

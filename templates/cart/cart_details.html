@@ -24,8 +24,8 @@
         </tbody>
     </table>
 
-    <form action="">
-        <button type="submit">Checkeout</button>
+    <form action="{% url 'order:order_details' %}">
+        <button type="submit" name="cart_id" value="{{cart.id}}">Checkeout</button>
     </form>
     
 

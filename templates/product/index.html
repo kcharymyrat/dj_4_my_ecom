@@ -2,7 +2,9 @@
 
 {% block content %}
     <nav>
-        <p><a href="{{cart.get_absolute_url}}">My Cart - 0</a></p>
+        {% if cart %}
+            <p><a href="{{cart.get_absolute_url}}">My Cart - {{cart.qty}}</a></p>
+        {% endif %}
     </nav>
 
     <div>
